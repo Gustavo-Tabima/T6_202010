@@ -1,16 +1,12 @@
-package test.logic;
+package test.data_structures;
 
-import static org.junit.Assert.*;
-import model.logic.Modelo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestModelo {
-	
-	private Modelo modelo;
-	private static int CAPACIDAD=100;
-	
+public class TestArbolRojoNegro {
 	@Before
 	public void setUp1() {
 	}
@@ -21,9 +17,8 @@ public class TestModelo {
 	}
 
 	@Test
-	public void testModelo() {
-		assertTrue(modelo!=null);
-		assertEquals(0, modelo.darTamano());  // Modelo con 0 elementos presentes.
+	public void testArbol() {
+		
 	}
 
 	@Test
@@ -32,7 +27,7 @@ public class TestModelo {
 	}
 
 	@Test
-	public void testAgregar() {
+	public void testinsertar() {
 		// TODO Completar la prueba
 	}
 
@@ -48,5 +43,4 @@ public class TestModelo {
 		// TODO Completar la prueba
 		
 	}
-
 }
