@@ -37,10 +37,13 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	// Atributos
 	// -----------------------------------------------------------------
 
+	public int llave;
+	
 	/**
 	 * Hijo derecho del nodo
 	 */
 	private NodoRojoNegro<T> hijoDerecho;
+	
 
 	/**
 	 * Hijo izquierdo del nodo
@@ -73,9 +76,10 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @param c
 	 */
-	public NodoRojoNegro( Comparendo c )
+	public NodoRojoNegro( T c, int Pllave )
 	{
-		comparendo =  c;
+		comparendo =  (Comparendo) c;
+		llave=Pllave;
 		color = ROJO;
 		cambiarHijoDerecho( new NodoRojoNegro<T>( ) );
 		cambiarHijoIzquierdo( new NodoRojoNegro<T>( ) );
@@ -83,8 +87,6 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	}
 
 	/**
-	 * Constructor por defecto de la clase.
-	 * </p>
 	 * Construye un nodo hoja (nodo negro sin información).
 	 */
 	private NodoRojoNegro( )
@@ -214,9 +216,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @return El mayor de los descendientes del nodo.
 	 */
-	public Comparendo darMayor( )
+	public T darMayor( )
 	{
-		return hijoDerechoHoja( ) ? comparendo : hijoDerecho.darMayor( );
+		return hijoDerechoHoja( ) ? (T) comparendo : hijoDerecho.darMayor( );
 	}
 
 	/**
@@ -224,9 +226,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @return El menor de los descendientes del nodo.
 	 */
-	public Comparendo darMenor( )
+	public T darMenor( )
 	{
-		return hijoIzquierdoHoja( ) ? comparendo : hijoIzquierdo.darMenor( );
+		return hijoIzquierdoHoja( ) ? (T) comparendo : hijoIzquierdo.darMenor( );
 	}
 
 	/**
@@ -307,11 +309,11 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * @param e Información a buscar.
 	 * @return <code>true</code> si existe un descendiente del nodo con la información ingresada por parametro o <code>false</code> en caso contrario.
 	 */
-	public boolean existe( Comparendo Pcomp )
+	public boolean existe( int Pllave )
 	{
 		try
 		{
-			darNodo( Pcomp );
+			darNodo( Pllave );
 			return true;
 		}
 		catch( ElementoNoExisteException e )
@@ -322,32 +324,32 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	}
 
 	/**
-	 * Busca el nodo que contiene comaredno como parametro.
+	 * Busca el nodo que contiene llave como parametro.
 	 * 
 	 * @param comaparendo buscado en el nodo.
 	 * @return El nodo que contiene comparendo por parametro.
 	 * @throws NoExisteException En caso de no encontrar la información buscada.
 	 */
-	public Comparendo darNodo( Comparendo elem ) throws ElementoNoExisteException
+	public T darNodo( int Pllave ) throws ElementoNoExisteException
 	{
-		int comp = elem.dartId()-comparendo.dartId();
+		int comp = Pllave-this.darLlaveNodo();
 		if( comp == 0 )
-			return comparendo;
+			return (T) comparendo;
 		else if( comp < 0 )
 		{
 			if( !hijoIzquierdoHoja( ) )
-				return hijoIzquierdo.darNodo( elem );
+				return hijoIzquierdo.darNodo( Pllave );
 			else{
-				throw new ElementoNoExisteException( "El elemento buscado no existe" );
+				throw new ElementoNoExisteException( "El elemento con llave parametro buscado no existe" );
 
 			}
 		}
 		else
 		{
 			if( !hijoDerechoHoja( ) )
-				return hijoDerecho.darNodo( elem );
+				return hijoDerecho.darNodo( Pllave );
 			else{
-				throw new ElementoNoExisteException( "El elemento buscado no existe" );
+				throw new ElementoNoExisteException( "El elemento con llave parametro buscado no existe" );
 
 			}
 
@@ -360,9 +362,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @return La información guardada en el nodo.
 	 */
-	public Comparendo darInfoNodo( )
+	public T darInfoNodo( )
 	{
-		return  comparendo;
+		return  (T) comparendo.toString();
 	}
 
 	/**
@@ -370,12 +372,14 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @return La información guardada en el nodo.
 	 */
-	public int darInfoNodoID( )
+	public int darLlaveNodo( )
 	{
-		return  ((Comparendo) comparendo).dartId();
+		return  llave;
 	}
 
 	/**
+	 * 
+	 * 
 	 * Verifica si el hijo derecho del nodo es negro.
 	 * 
 	 * @return <code>true</code> si el hijo derecho es negro o <code>false</code> en caso contrario.
@@ -570,11 +574,11 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 */
 	private void insertarNormal( NodoRojoNegro<T> nodo ) throws ElementoExisteException
 	{
-		if( comparendo.equals(nodo))
+		if( llave==nodo.darLlaveNodo())
 		{
 			//throw new ElementoExisteException( "El elemento " + nodo.darInfoNodo( ).toString( ) + " ya existe en el árbol" );
 		}
-		else if( ( ((Comparendo) comparendo).dartId()<nodo.darInfoNodoID() ))
+		else if(llave<nodo.darLlaveNodo())
 		{
 			if( hijoDerechoHoja( ) )
 			{

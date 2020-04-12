@@ -48,10 +48,10 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	// -----------------------------------------------------------------      
 
 
-	public void insertar( Comparendo c ) throws ElementoExisteException
+	public void insertar( Comparendo c, int Pllave) throws ElementoExisteException
 	{
 
-		NodoRojoNegro<T> nodo = new NodoRojoNegro<T>( c );
+		NodoRojoNegro<T> nodo = new NodoRojoNegro<T>( (T) c, Pllave );
 
 		NodoRojoNegro<T> r2 = null;
 
@@ -89,19 +89,19 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	 * @param elem Elemento a buscar en el arbol.
 	 * @return <code>true</code> si el elemento es encontrado en el arbol o <code>false</code> en caso contrario.
 	 */
-	public boolean existe( Comparendo elem )
+	public boolean existe( int Pllave )
 	{
-		return raiz != null ? raiz.existe( elem ) : false;
+		return raiz != null ? raiz.existe( Pllave ) : false;
 	}
 
 
-	public Comparendo buscar( Comparendo modelo )
+	public T buscar( int Pllave )
 	{
 		try
 		{   
-			if (raiz.darNodo(modelo)== null)
+			if (raiz.darNodo(Pllave)== null)
 				return null; 
-			return raiz != null ? raiz.darNodo( modelo ) : null;
+			return raiz != null ? raiz.darNodo( Pllave ) : null;
 		}
 		catch( ElementoNoExisteException e )
 		{
@@ -137,7 +137,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	 * 
 	 * @return El menor  del arbol , null si vaesta vacio
 	 */
-	public Comparendo darMinimo( )
+	public T darMinimo( )
 	{
 		return raiz == null ? null : raiz.darMenor( );
 	}
@@ -147,7 +147,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	 * 
 	 * @return El mayor  del arbol , null si esta vacio
 	 */
-	public Comparendo darMayor( )
+	public T darMayor( )
 	{
 		return raiz == null ? null : raiz.darMayor( );
 	}

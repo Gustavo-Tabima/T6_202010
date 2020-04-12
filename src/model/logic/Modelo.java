@@ -62,7 +62,7 @@ public class Modelo<T> {
 
 				
 				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, DES_INFRAC, MEDIO_DETE, CLASE_VEHI, TIPO_SERVI, INFRACCION, LOCALIDAD, MUNICIPIO, longitud, latitud);
-				datos.insertar(c);
+				datos.insertar(c,OBJECTID);
 			}
 
 		}
@@ -78,7 +78,7 @@ public class Modelo<T> {
 	}
 	
 	public T darMayorId(){
-		Comparendo x = datos.darMayor();
+		Comparendo x = (Comparendo) datos.darMayor();
 		
 		return (T) x;
 		
