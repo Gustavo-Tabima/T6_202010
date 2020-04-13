@@ -15,11 +15,11 @@ public interface IArbolOrdenado<T> {
 	public int darPeso();
 
 
-	public T buscar(int llave);
+	public Object buscar(int llave);
 
 
 
-	public void insertar( Comparendo elem, int Pllave ) throws ElementoExisteException;
+	public void insertar( T elem, int Pllave ) throws ElementoExisteException;
 
 
 	public void eliminar( T elem ) throws ElementoNoExisteException;

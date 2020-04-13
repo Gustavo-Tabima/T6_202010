@@ -2,8 +2,6 @@
 
 package model.data_structures;
 
-import java.io.Serializable;
-
 import java.util.List;
 
 import  model.data_structures.NodoRojoNegro;
@@ -14,7 +12,7 @@ import model.logic.Comparendo;
 
 
 
-public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializable
+public class NodoRojoNegro<T> 
 {
 	// -----------------------------------------------------------------
 	// Constantes
@@ -53,7 +51,7 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	/**
 	 * Información del comparendo  en el nodo
 	 */
-	private Comparendo comparendo;
+	private T comparendo;
 
 	/**
 	 * Color del nodo
@@ -78,7 +76,7 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 */
 	public NodoRojoNegro( T c, int Pllave )
 	{
-		comparendo =  (Comparendo) c;
+		comparendo =  (T) c;
 		llave=Pllave;
 		color = ROJO;
 		cambiarHijoDerecho( new NodoRojoNegro<T>( ) );
@@ -228,7 +226,7 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 */
 	public T darMenor( )
 	{
-		return hijoIzquierdoHoja( ) ? (T) comparendo : hijoIzquierdo.darMenor( );
+		return hijoIzquierdoHoja( ) ?  comparendo : hijoIzquierdo.darMenor( );
 	}
 
 	/**
@@ -362,9 +360,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	 * 
 	 * @return La información guardada en el nodo.
 	 */
-	public T darInfoNodo( )
+	public Comparendo darInfoNodo( )
 	{
-		return  (T) comparendo.toString();
+		return  (Comparendo) comparendo;
 	}
 
 	/**
@@ -495,9 +493,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	{
 		if( nodo.comparendo != null )
 		{
-			Comparendo aux =  comparendo;
+			Comparendo aux =  (Comparendo) comparendo;
 			comparendo = nodo.comparendo;
-			nodo.comparendo =  aux;
+			nodo.comparendo =  (T) aux;
 		}
 		else
 		{
@@ -576,7 +574,9 @@ public class NodoRojoNegro<T extends Comparable<? super T>> implements Serializa
 	{
 		if( llave==nodo.darLlaveNodo())
 		{
-			//throw new ElementoExisteException( "El elemento " + nodo.darInfoNodo( ).toString( ) + " ya existe en el árbol" );
+			Comparendo x = nodo.darInfoNodo();
+			
+		 darInfoNodo().cambioDeTodo(x.darFecha(), x.darMedioDete(), x.darClaseVehi(), x.darTipoServi(), x.darCodInfrac(), x.darDesInfrac(), x.darLocalidad(), x.darMuni(), x.getLongitud(), x.darLatitud());	
 		}
 		else if(llave<nodo.darLlaveNodo())
 		{

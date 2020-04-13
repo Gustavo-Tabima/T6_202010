@@ -65,6 +65,7 @@ public class Comparendo {
 
 		return claseVehi;
 	}
+	
 	public String darMuni(){
 		return municipio;
 	}
@@ -135,6 +136,32 @@ public class Comparendo {
 
 	public void setLatitud(double latitud) {
 		this.latitud = latitud;
+	}
+	// este metodo es para cuando el nodo que se quiera meter tiene una llave que ya existe
+	//, lo que se hace es que cambia toda la info por la del nodo parametro
+	public void cambioDeTodo( Date fecha, String medioDete, String claseDeVehiculo, String tipoDeServicio, String codigoInfraccion,String descripcionInfraccion, String localidad, String municipio, double longitud, double latitud) 
+{
+
+		this.fecha = fecha;
+
+		this.medioDete = medioDete;
+
+		this.claseVehi = claseDeVehiculo;
+
+		this.tipoServi = tipoDeServicio;
+
+		this.codInfrac = codigoInfraccion;
+
+		this.descrepInfrac = descripcionInfraccion;
+
+
+		this.localidad = localidad;
+
+		this.longitud = longitud;
+		this.municipio=municipio;
+
+		this.latitud = latitud;
+		
 	}
 
 	public String toString() {

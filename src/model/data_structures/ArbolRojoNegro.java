@@ -16,7 +16,7 @@ import model.logic.Comparendo;
 
 
 
-public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializable, IArbolOrdenado<T>
+public class ArbolRojoNegro<T> implements  IArbolOrdenado<T>
 {
 	
 
@@ -27,7 +27,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	/**
 	 * Raiz del árbol.
 	 */
-	private NodoRojoNegro<T> raiz;
+	private NodoRojoNegro raiz;
 
 	// -----------------------------------------------------------------
 	// Constructores
@@ -48,12 +48,12 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	// -----------------------------------------------------------------      
 
 
-	public void insertar( Comparendo c, int Pllave) throws ElementoExisteException
+	public void insertar( T c, int Pllave) throws ElementoExisteException
 	{
 
-		NodoRojoNegro<T> nodo = new NodoRojoNegro<T>( (T) c, Pllave );
+		NodoRojoNegro nodo = new NodoRojoNegro(   c, Pllave );
 
-		NodoRojoNegro<T> r2 = null;
+		NodoRojoNegro r2 = null;
 
 		if( raiz == null )
 		{
@@ -95,7 +95,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	}
 
 
-	public T buscar( int Pllave )
+	public Object buscar( int Pllave )
 	{
 		try
 		{   
@@ -137,7 +137,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	 * 
 	 * @return El menor  del arbol , null si vaesta vacio
 	 */
-	public T darMinimo( )
+	public Object darMinimo( )
 	{
 		return raiz == null ? null : raiz.darMenor( );
 	}
@@ -147,7 +147,7 @@ public class ArbolRojoNegro<T extends Comparable<? super T>> implements Serializ
 	 * 
 	 * @return El mayor  del arbol , null si esta vacio
 	 */
-	public T darMayor( )
+	public Object darMayor( )
 	{
 		return raiz == null ? null : raiz.darMayor( );
 	}
