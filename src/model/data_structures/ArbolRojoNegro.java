@@ -131,6 +131,11 @@ public class ArbolRojoNegro<T> implements  IArbolOrdenado<T>
 	{
 		return raiz == null ? 0 : raiz.darAltura( );
 	}
+	
+	public int darAlturaP( )
+	{
+		return raiz == null ? 0 : raiz.darAlturaP( );
+	}
 
 	/**
 	 * Retorna el menor  del arbol.

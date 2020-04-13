@@ -22,7 +22,9 @@ import model.data_structures.NodoRojoNegro;
  */
 public class Modelo<T> {
 
+	//public static String PATH = "./data/Comparendos_DEI_2018_Bogota_D.C.geojson";
 	public static String PATH = "./data/Comparendos_DEI_2018_Bogota_D.C_small.geojson";
+
 	public  ArbolRojoNegro datos; 
 	public Modelo(){
 		datos= new ArbolRojoNegro();
@@ -84,7 +86,14 @@ public class Modelo<T> {
 		
 	}
 
-	public void req(){
+	public int darAltura(){
+		int x = datos.darAltura();
+		return x;
+
+	}
+	public double darAlturaP(){
+		int x = datos.darAlturaP();
+		return x/darTamano();
 
 	}
 

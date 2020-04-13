@@ -14,7 +14,9 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Crear Arreglo Dinamico de Strings");
+			System.out.println("1. cargar json");
+			System.out.println("2. dar altura del arbol");
+
 		
 		}
 

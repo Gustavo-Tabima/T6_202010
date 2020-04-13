@@ -2,6 +2,7 @@
 
 package model.data_structures;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import  model.data_structures.NodoRojoNegro;
@@ -36,12 +37,12 @@ public class NodoRojoNegro<T>
 	// -----------------------------------------------------------------
 
 	public int llave;
-	
+
 	/**
 	 * Hijo derecho del nodo
 	 */
 	private NodoRojoNegro<T> hijoDerecho;
-	
+
 
 	/**
 	 * Hijo izquierdo del nodo
@@ -197,7 +198,11 @@ public class NodoRojoNegro<T>
 	 */
 	public boolean hijoDerechoHoja( )
 	{
-		return hijoDerecho.comparendo == null;
+		
+		if (hijoDerecho.comparendo == null) {
+			return true;
+		}
+		return false ;
 	}
 
 	/**
@@ -206,7 +211,11 @@ public class NodoRojoNegro<T>
 	 */
 	public boolean hijoIzquierdoHoja( )
 	{
-		return hijoIzquierdo.comparendo == null;
+		if (hijoIzquierdo.comparendo == null) {
+			return true;
+		}
+		return false ;
+	
 	}
 
 	/**
@@ -299,6 +308,40 @@ public class NodoRojoNegro<T>
 		int a1 = hijoIzquierdo.darAltura( );
 		int a2 = hijoDerecho.darAltura( );
 		return ( a1 >= a2 ) ? a1 + 1 : a2 + 1;
+	}
+
+	public int darAlturaP( )
+	{int x=0;
+		int fin=0;
+		NodoRojoNegro<T> actual = this;
+
+		ArrayList<Integer> prom= new ArrayList<>();
+		int contado =0;
+		if (actual.esHoja()) {
+			prom.add(contado);
+		}
+		contado++;
+		if (!hijoDerechoHoja()) {
+			 x = hijoDerecho.darAlturaP();
+
+		}
+		int y = hijoIzquierdo.darAlturaP();
+	
+		if (x<y) {
+			contado=contado+y;
+			
+		}else {
+			contado=contado+x;
+
+		}
+		
+		for (int i = 0; i<=prom.size()-1; i++) {
+			fin= fin+prom.get(i);
+
+		}
+
+
+		return fin;
 	}
 
 	/**
@@ -575,8 +618,8 @@ public class NodoRojoNegro<T>
 		if( llave==nodo.darLlaveNodo())
 		{
 			Comparendo x = nodo.darInfoNodo();
-			
-		 darInfoNodo().cambioDeTodo(x.darFecha(), x.darMedioDete(), x.darClaseVehi(), x.darTipoServi(), x.darCodInfrac(), x.darDesInfrac(), x.darLocalidad(), x.darMuni(), x.getLongitud(), x.darLatitud());	
+
+			// darInfoNodo().cambioDeTodo(x.darFecha(), x.darMedioDete(), x.darClaseVehi(), x.darTipoServi(), x.darCodInfrac(), x.darDesInfrac(), x.darLocalidad(), x.darMuni(), x.getLongitud(), x.darLatitud());	
 		}
 		else if(llave<nodo.darLlaveNodo())
 		{

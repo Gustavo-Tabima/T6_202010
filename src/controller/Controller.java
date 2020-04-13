@@ -38,11 +38,14 @@ public class Controller {
 				case 1:
 					view.printMessage("--------- \n cargar datos: ");
 					modelo.cargarDatos();
-				    view.printMessage("Arreglo Dinamico creado");
+				    view.printMessage("arbol creado");
 				    view.printMessage("Numero actual de elementos " + modelo.darTamano() );
 				    view.printMessage(modelo.darMayorId()+ "\n---------");
 					break;
-
+				case 2:
+					view.printMessage("--------- \n altura prom del arbol: ");
+				    view.printMessage("altura actula " + modelo.darAlturaP() );
+					break;
 			
 
 				default: 
