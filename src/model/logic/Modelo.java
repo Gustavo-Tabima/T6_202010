@@ -25,9 +25,9 @@ public class Modelo<T> {
 	//public static String PATH = "./data/Comparendos_DEI_2018_Bogota_D.C.geojson";
 	public static String PATH = "./data/Comparendos_DEI_2018_Bogota_D.C_small.geojson";
 
-	public  ArbolRojoNegro datos; 
+	public  ArbolRojoNegro datos ; 
 	public Modelo(){
-		datos= new ArbolRojoNegro();
+		datos= new ArbolRojoNegro<Comparendo>();
 	}
 
 	public void cargarDatos() {
@@ -97,8 +97,27 @@ public class Modelo<T> {
 
 	}
 
-	public void req2(){
-
+	public String req2(int idEntrada){
+		String respuesta = "";
+	if(datos.darRaiz()!=null) {
+		NodoRojoNegro<Comparendo> Actual = datos.darRaiz();
+		if(Actual.darInfoNodo().dartId() == idEntrada) {
+			if(buscarDerechaID(idEntrada) != null) {
+				respuesta = buscarDerechaID(idEntrada).darInfoNodo().toString();
+			}
+			else if (buscarIzquierdaID(idEntrada)!= null) {
+				respuesta = buscarIzquierdaID(idEntrada).darInfoNodo().toString();
+			}
+			else {
+				Actual = Actual.darHijoDerecho();
+				req2(idEntrada);
+				Actual = Actual.darHijoIzquierdo();
+				req2(idEntrada);
+			}
+		}
+	}
+		
+		return respuesta;
 	}
 	public void req3(){
 
@@ -113,6 +132,32 @@ public class Modelo<T> {
 	public void req6(){
 
 	}
-
+	
+	public NodoRojoNegro<Comparendo> buscarDerechaID( int idEntrada){
+		NodoRojoNegro<Comparendo> RT = null;
+		NodoRojoNegro<Comparendo> act = datos.darRaiz();
+		if(act.darInfoNodo().dartId() == idEntrada) {
+			RT = act;
+			
+			}
+		else {
+			act = act.darHijoDerecho();
+			req2(idEntrada);
+		}
+		return RT;
+	}
+	public NodoRojoNegro<Comparendo> buscarIzquierdaID( int idEntrada){
+		NodoRojoNegro<Comparendo> RT = null;
+		NodoRojoNegro<Comparendo> act = datos.darRaiz();
+		if(act.darInfoNodo().dartId() == idEntrada) {
+			RT = act;
+			
+			}
+		else {
+			act = act.darHijoIzquierdo();
+			buscarIzquierdaID(idEntrada);
+		}
+		return RT;
+	}
 }
 
