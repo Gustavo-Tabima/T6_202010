@@ -777,7 +777,10 @@ public class NodoRojoNegro<T>
 
 	}
 
-
+	public int req3( )
+	{
+		return 0;
+	}
 
 
 

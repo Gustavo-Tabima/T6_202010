@@ -16,6 +16,8 @@ public class View
 		{
 			System.out.println("1. cargar json");
 			System.out.println("2. dar altura del arbol");
+			System.out.println("3. Buscar comparendo segun llave (requerimiento 2)");
+			System.out.println("4. Buscar comparendo segun  rango de llaves (requerimiento 3)");
 
 		
 		}

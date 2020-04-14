@@ -12,6 +12,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import model.data_structures.ArbolRojoNegro;
+import model.data_structures.ElementoNoExisteException;
 import model.data_structures.NodoRojoNegro;
 
 
@@ -31,7 +32,7 @@ public class Modelo<T> {
 	}
 
 	public void cargarDatos() {
-		
+
 
 		JsonReader reader;
 
@@ -62,7 +63,7 @@ public class Modelo<T> {
 				double latitud = e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()
 						.get(1).getAsDouble();
 
-				
+
 				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, DES_INFRAC, MEDIO_DETE, CLASE_VEHI, TIPO_SERVI, INFRACCION, LOCALIDAD, MUNICIPIO, longitud, latitud);
 				datos.insertar(c,OBJECTID);
 			}
@@ -76,14 +77,21 @@ public class Modelo<T> {
 
 	public int darTamano() {
 		return datos.darPeso();
-		
+
 	}
-	
+
 	public T darMayorId(){
 		Comparendo x = (Comparendo) datos.darMayor();
-		
+
 		return (T) x;
-		
+
+	}
+
+	public T darMenorId(){
+		Comparendo x = (Comparendo) datos.darMinimo();
+
+		return (T) x;
+
 	}
 
 	public int darAltura(){
@@ -97,18 +105,22 @@ public class Modelo<T> {
 
 	}
 
-	public void req2(){
+	public String req2(int llave) throws ElementoNoExisteException{
+		return	 datos.buscar(llave)+"";
+
+
+
 
 	}
-	public void req3(){
-
+	public String req3(int datoInt){
+		return "";
 	}
 	public void req4(){
 
 	}
 	public void req5(){
 
-		
+
 	}
 	public void req6(){
 
