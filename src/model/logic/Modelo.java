@@ -112,19 +112,24 @@ public class Modelo<T> {
 
 
 	}
-	public String req3(int datoInt){
-		return "";
+	public String req3(int IdInferior , int IdSuperior){
+		String respuesta = "";
+		
+		respuesta += datos.buscar(IdInferior).toString() +" --- ";
+		respuesta += datos.buscar(IdSuperior).toString()+" --- ";
+		
+		for(int i = IdInferior; i <= IdSuperior;i++) {
+			respuesta += datos.buscar(i).toString()+" --- ";
+		}
+		
+		
+		
+		
+		
+		
+		return respuesta;
 	}
-	public void req4(){
 
-	}
-	public void req5(){
-
-
-	}
-	public void req6(){
-
-	}
 
 }
 

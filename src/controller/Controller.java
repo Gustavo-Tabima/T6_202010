@@ -30,7 +30,7 @@ public class Controller {
 		boolean fin = false;
 		String dato = "";
 		int datoInt = 0;
-
+		int datoSig = 0;
 		String respuesta = "";
 
 		while( !fin ){
@@ -58,10 +58,12 @@ public class Controller {
 				    view.printMessage(modelo.req2(datoInt) );
 					break;
 				case 4:
-					view.printMessage(" bucar comparendos por el rango de ids: ");
+					view.printMessage(" bucar comparendos por el rango de ids: ejm: "
+							+ "inferior - superior ");
 					
 					datoInt= lector.nextInt();
-				    view.printMessage(modelo.req3(datoInt) );
+					datoSig= lector.nextInt();
+				    view.printMessage(modelo.req3(datoInt,datoSig) );
 					break;
 					
 					
