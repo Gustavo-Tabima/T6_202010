@@ -19,7 +19,7 @@ public interface IArbolOrdenado<T> {
 
 
 
-	public void insertar( T elem, int Pllave ) throws ElementoExisteException;
+	public void put( T elem, int Pllave ) throws ElementoExisteException;
 
 
 	public void eliminar( T elem ) throws ElementoNoExisteException;

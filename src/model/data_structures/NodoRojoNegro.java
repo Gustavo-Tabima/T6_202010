@@ -615,11 +615,11 @@ public class NodoRojoNegro<T>
 	 */
 	private void insertarNormal( NodoRojoNegro<T> nodo ) throws ElementoExisteException
 	{
-		if( llave==nodo.darLlaveNodo())
+		if( this.llave==nodo.darLlaveNodo())
 		{
 			Comparendo x = nodo.darInfoNodo();
 
-			// darInfoNodo().cambioDeTodo(x.darFecha(), x.darMedioDete(), x.darClaseVehi(), x.darTipoServi(), x.darCodInfrac(), x.darDesInfrac(), x.darLocalidad(), x.darMuni(), x.getLongitud(), x.darLatitud());	
+			 darInfoNodo().cambioDeTodo(x.darFecha(), x.darMedioDete(), x.darClaseVehi(), x.darTipoServi(), x.darCodInfrac(), x.darDesInfrac(), x.darLocalidad(), x.darMuni(), x.getLongitud(), x.darLatitud());	
 		}
 		else if(llave<nodo.darLlaveNodo())
 		{

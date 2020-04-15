@@ -48,7 +48,7 @@ public class ArbolRojoNegro<T> implements  IArbolOrdenado<T>
 	// -----------------------------------------------------------------      
 
 
-	public void insertar( T c, int Pllave) throws ElementoExisteException
+	public void put( T c, int Pllave) throws ElementoExisteException
 	{
 
 		NodoRojoNegro nodo = new NodoRojoNegro(   c, Pllave );

@@ -65,7 +65,7 @@ public class Modelo<T> {
 
 
 				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, DES_INFRAC, MEDIO_DETE, CLASE_VEHI, TIPO_SERVI, INFRACCION, LOCALIDAD, MUNICIPIO, longitud, latitud);
-				datos.insertar(c,OBJECTID);
+				datos.put(c,OBJECTID);
 			}
 
 		}
