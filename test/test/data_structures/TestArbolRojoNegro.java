@@ -18,6 +18,8 @@ public class TestArbolRojoNegro {
 	public ArbolRojoNegro pre= new ArbolRojoNegro();
 	
 	Date x= new Date();
+
+	private Comparendo co5;
 	
 	@Before
 	public void setUp1() throws ElementoExisteException {
@@ -25,7 +27,7 @@ public class TestArbolRojoNegro {
 		Comparendo co2= new Comparendo(2, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
 		Comparendo co3= new Comparendo(3, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
 		Comparendo co4= new Comparendo(4, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
-		Comparendo co5= new Comparendo(4, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
+		 co5= new Comparendo(5, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
 
 		pre.put(co1, 1);
 		pre.put(co2, 2);
@@ -45,22 +47,52 @@ public class TestArbolRojoNegro {
 	}
 
 	@Test
-	public void testDarTamano() {
+	public void testDarTamano() throws ElementoExisteException {
 		// TODO
-		assertEquals(4, pre.darPeso());
+		setUp1();
+		assertEquals(5, pre.darPeso());
 	}
 
 	@Test
 	public void testPut() throws ElementoExisteException {
 		// TODO Completar la prueba
+		setUp1();
+		Comparendo co6= new Comparendo(6, x, "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", "sasa", 1212, 12);
+		assertEquals(6, pre.darPeso());
 
 
 	}
 
 	@Test
-	public void testBuscar() {
+	public void testMin() throws ElementoExisteException {
 		// TODO Completar la prueba
+		setUp1();
+
+		Comparendo u = (Comparendo) pre.darMinimo();
+		assertEquals(1, u.dartId());
 	}
 
-	
+	@Test
+	public void testMax() throws Exception {
+		// TODO Completar la prueba
+		setUp1();
+
+		Comparendo u = (Comparendo) pre.darMayor();
+		assertEquals(5, u.dartId());
+	}@Test
+	public void testExiste() {
+		// TODO Completar la prueba
+		assertEquals(false, pre.existe(7));
+		
+	}
+	@Test
+	public void testVacio() {
+		// TODO Completar la prueba
+		boolean bruh=false;
+		
+		if (pre.darRaiz()==null) {
+			bruh= true;
+		}
+		assertEquals(false, bruh);
+	}
 }
